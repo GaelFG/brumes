@@ -1,6 +1,6 @@
-brumes
+Brumes_server
 ======
 
-Serveur de brumes
-Ecrit en scala
-developpé avec kryonet 2.1
+Server for Brumes
+Written with scala 2.10
+Using Kryonet 2.1
