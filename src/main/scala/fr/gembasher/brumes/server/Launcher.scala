@@ -1,6 +1,7 @@
 package fr.gembasher.brumes.server
 
 import scala.collection.mutable.SynchronizedQueue
+import fr.gembasher.brumes.Network
 
 object Launcher {
   val inputs_queue = new SynchronizedQueue
@@ -11,6 +12,12 @@ object Launcher {
   }
 
   def launch {
+
+    Network.register
+    KryoServer.addListener(BrumesListener)
+    KryoServer.bind(Network.port);
+    KryoServer.start();
+
     var running = true
     while (running) {
       run(1)
@@ -23,6 +30,7 @@ object Launcher {
     process_inputs
     World.update(delta)
     // relever temps
+    Thread sleep 333 
     // dormir pour rester au framerate fixé
     
   }
