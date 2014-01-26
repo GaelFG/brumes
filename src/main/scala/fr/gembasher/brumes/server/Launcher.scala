@@ -5,6 +5,8 @@ import fr.gembasher.brumes.Network
 
 object Launcher {
   val inputs_queue = new SynchronizedQueue
+  var running = true
+  var simulation_time = 0
   
   def main(args: Array[String]) {
     println("lancement serveur ...")
@@ -18,7 +20,6 @@ object Launcher {
     KryoServer.bind(Network.port);
     KryoServer.start();
 
-    var running = true
     while (running) {
       run(1)
     }
@@ -26,12 +27,11 @@ object Launcher {
   }
   
   def run (delta : Double) {
-    // relever temps
-    process_inputs
-    World.update(delta)
-    // relever temps
-    Thread sleep 333 
-    // dormir pour rester au framerate fixé
+    var real_time = System.currentTimeMillis
+    while (simulation_time < real_time)
+      simulation_time += 16 //TODO choisir framerate
+      process_inputs
+      World.update(16)
     
   }
   

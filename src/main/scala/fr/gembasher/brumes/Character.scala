@@ -3,10 +3,11 @@ package fr.gembasher.brumes
 /**
 * A connected player character
 */
-class Character( p_id:Int ) {
-	var name :String = "Toto"
-	var id :Int = p_id
-	var x :Int = 0
-	var y :Int = 0
+class Character( val id :Int, var x :Int, var y :Int, var name :String) {
+
+	/** Update position objective of character */
+	def aim_toward( x:Int, y:Int ) {
+
+	}
 	
 }
