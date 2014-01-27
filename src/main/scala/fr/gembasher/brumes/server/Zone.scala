@@ -6,9 +6,8 @@ import fr.gembasher.brumes.Entity
 * zones ares independents, entities other than players characters can't travel between them
 * If needed zones could be instanciated, for housing per exemple.
 */
-class Zone {
+class Zone (val name :Symbol){
 	val entities :List[Entity] = List()
-
 	def update {
 
 	}

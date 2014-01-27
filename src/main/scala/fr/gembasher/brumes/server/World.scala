@@ -6,7 +6,12 @@ package fr.gembasher.brumes.server
 */
 object World {
 
-	val zones :List[Zone] = List() // mettre les zones
+	var zones :List[Zone] = List() // mettre les zones
+	zones = new Zone('test_zone) :: zones
+
+	def get_zone_by_id( id_zone :Symbol ) :Zone = {
+		return zones.head
+	}
 
 	def update(delta : Double) {
 		for ( zone :Zone <- zones ) {
