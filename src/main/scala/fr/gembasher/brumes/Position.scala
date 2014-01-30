@@ -1,37 +1,37 @@
 package fr.gembasher.brumes
 
-import fr.gembasher.brumes.server.Zone 
+import fr.gembasher.brumes.server.Zone
+import fr.gembasher.brumes.server.Location
 
 /**
 * The position of an entity in a game zone
 */
-class Position(val environment :Zone, var x :Double, var y :Double, var collisionBox_size :Double) {
+class Position(val environment :Zone, var current :Location, var collisionBox_size :Double) {
+	var destination :Location = current
 
-	def update(x_destination :Double, y_destination :Double, velocity :Double) {
-		var future_x = x
-		var future_y = y
+	def update(velocity :Double) {
+		val future :Location = Location(current.x,current.y)
 
-		if (x_destination == x && y_destination == y) return
+		if (current == destination) return
 		
-		if ( x < x_destination ) {
-			future_x = Math.min(x_destination, x+velocity)
+		if ( current.x < destination.x ) {
+			future.x = Math.min(destination.x, current.x+velocity)
 		}
 
-		if ( x > x_destination ) {
-			future_x = Math.max(x_destination, x-velocity)
+		if ( current.x > destination.x ) {
+			future.x = Math.max(destination.x, current.x-velocity)
 		}
 
-		if ( y < y_destination ) {
-			future_y = Math.min(y_destination, y+velocity)
+		if ( current.y < destination.y ) {
+			future.y = Math.min(destination.y, current.y+velocity)
 		}
 
-		if ( y > y_destination ) {
-			future_y = Math.max(y_destination, y-velocity)
+		if ( current.y > destination.y ) {
+			future.y = Math.max(destination.y, current.y-velocity)
 		}
 
-		if ( environment.is_free(future_x, future_y, collisionBox_size) ) {
-			x = future_x
-			y = future_y
+		if ( environment.is_free(future, collisionBox_size) ) {
+			current = future
 		}
 	}
 
