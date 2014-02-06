@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.Listener
 import fr.gembasher.brumes.network.RegistrationRequired
 import com.esotericsoftware.kryonet.Connection
 import fr.gembasher.brumes.Character
+import fr.gembasher.brumes.network.PlayerIntent
 
 /**
 *	Here are received players inputs
@@ -15,7 +16,15 @@ object BrumesListener extends Listener {
         val session = connection.asInstanceOf[PlayerSession]
         val character = session.character
 
-        session.sendTCP(new RegistrationRequired )
+        if (character == null) {
+        session.sendTCP(new RegistrationRequired)
+    	}
+
+    	// sinon on est connecté legalement
+    	if (obj.isInstanceOf[PlayerIntent] ) {
+    		val player_intent :PlayerIntent = obj.asInstanceOf[PlayerIntent]
+    		println("demande de mouvement a x : " + player_intent.destination_x + " Y : " + player_intent.destination_y);
+    	}
 
 	}
 }

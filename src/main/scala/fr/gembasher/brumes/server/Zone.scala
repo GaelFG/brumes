@@ -1,5 +1,6 @@
 package fr.gembasher.brumes.server
 
+import scala.collection.mutable.MutableList
 import fr.gembasher.brumes.Entity
 
 /**
@@ -8,7 +9,10 @@ import fr.gembasher.brumes.Entity
 * If needed zones could be instanciated, for housing per exemple.
 */
 class Zone (val name :Symbol){
-	val entities :List[Entity] = List()
+	val entities :MutableList[Entity] = MutableList()
+	test_load_entities
+
+
 	def update {
 
 	}
@@ -17,6 +21,11 @@ class Zone (val name :Symbol){
 		/* check lack of collision with setting */
 		/* check lack of collision with entities */
 		return true
+	}
+
+	private def test_load_entities {
+		entities += DataBase.load_character_by_id(1)
+		entities += DataBase.load_character_by_id(2)
 	}
 
 }

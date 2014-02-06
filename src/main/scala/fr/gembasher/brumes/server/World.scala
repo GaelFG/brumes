@@ -8,6 +8,7 @@ object World {
 
 	var zones :List[Zone] = List() // mettre les zones
 	zones = new Zone('test_zone) :: zones
+	load_test_setting
 
 	def get_zone_by_id( id_zone :Symbol ) :Zone = {
 		return zones.head
@@ -18,4 +19,9 @@ object World {
 			zone.update
 		}
 	}
+
+	def load_test_setting() {
+		
+	}
+
 }
