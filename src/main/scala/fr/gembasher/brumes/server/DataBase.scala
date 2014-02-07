@@ -19,7 +19,7 @@ object DataBase {
 	}
 
 	/**
-	* Load a character
+	* Load a character, add him in the entity list of his current zone, and return a reference to him
 	*/
 	def load_character_by_id( id :Int ) :fr.gembasher.brumes.Character ={
 		var character :Character = null

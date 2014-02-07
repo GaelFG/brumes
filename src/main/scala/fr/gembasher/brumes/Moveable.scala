@@ -5,7 +5,7 @@ import fr.gembasher.brumes.server.Location
 
 /** Define entities which can move on the world */
 trait Moveable {
-	val position :Position
+	var position :Position
 	var velocity :Double
 
 	/** Update position objective of entity */

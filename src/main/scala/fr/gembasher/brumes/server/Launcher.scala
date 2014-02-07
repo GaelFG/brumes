@@ -16,6 +16,7 @@ object Launcher {
   def launch {
 
     Network.register
+    World.initialize
     KryoServer.addListener(BrumesListener)
     KryoServer.bind(Network.port);
     KryoServer.start();

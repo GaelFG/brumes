@@ -6,25 +6,25 @@ import scala.collection.mutable.MutableList
 */
 object World {
 
-	val zones :MutableList[Zone] = MutableList() // mettre les zones
-	zones += new Zone('test_zone)
-	zones += new Zone('test_zone2)
-	load_test_setting
+	var zones :Map[Symbol,Zone] = Map() // mettre les zones
+	
+	def initialize {
+		zones = zones + ('test_zone -> new Zone('test_zone))
+ 		zones = zones + ('test_zone2 -> new Zone('test_zone2))
+	}
 
 	def get_zone_by_id( id_zone :Symbol ) :Zone = {
-		//TODO faire le foreach ou passer a une hashmap
-		//TODO Biter comment marchent les mutables
-		return zones.get(1).getOrElse(null)
+		println(zones)
+		return new Zone('test_zone)
+		//return zones('test_zone)
 	}
 
 	def update(delta : Double) {
-		for ( zone :Zone <- zones ) {
+		for ( zone :Zone <- zones.values ) {
 			zone.update
 		}
 	}
 
-	def load_test_setting() {
-		
-	}
+
 
 }
