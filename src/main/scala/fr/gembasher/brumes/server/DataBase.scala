@@ -6,9 +6,22 @@ import fr.gembasher.brumes.Position
 object DataBase {
 
 	/**
+	* validate a login
+	*/
+	def is_valid_login(login :String, password :String) :Boolean={
+		//TODO implements
+		return true
+	}
+
+	def get_character_id_by_account(login :String) :Int={
+		//TODO implements
+		return 1
+	}
+
+	/**
 	* Load a character
 	*/
-	def load_character_by_id( id :Int ) :Character ={
+	def load_character_by_id( id :Int ) :fr.gembasher.brumes.Character ={
 		var character :Character = null
 		/* placeholder */
 		if (id == 1) {

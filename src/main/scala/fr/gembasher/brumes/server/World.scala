@@ -1,17 +1,20 @@
 package fr.gembasher.brumes.server
 
-//import fr.gembasher.brumes.server.Zone
+import scala.collection.mutable.MutableList
 /**
 *
 */
 object World {
 
-	var zones :List[Zone] = List() // mettre les zones
-	zones = new Zone('test_zone) :: zones
+	val zones :MutableList[Zone] = MutableList() // mettre les zones
+	zones += new Zone('test_zone)
+	zones += new Zone('test_zone2)
 	load_test_setting
 
 	def get_zone_by_id( id_zone :Symbol ) :Zone = {
-		return zones.head
+		//TODO faire le foreach ou passer a une hashmap
+		//TODO Biter comment marchent les mutables
+		return zones.get(1).getOrElse(null)
 	}
 
 	def update(delta : Double) {

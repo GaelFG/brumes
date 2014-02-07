@@ -6,6 +6,8 @@ import fr.gembasher.brumes.network.PlayerIntent
 import fr.gembasher.brumes.network.LoginRequest
 import fr.gembasher.brumes.server.KryoServer
 
+import fr.gembasher.brumes.network.KryoRegisterer
+
 /**
  * Include all common constants between server and client.
  * Also register commons class for networking
@@ -16,9 +18,7 @@ object Network {
 
 	def register {
 		val kryo :Kryo = KryoServer.getKryo
-		kryo.register(classOf[RegistrationRequired])
-		kryo.register(classOf[PlayerIntent])
-		kryo.register(classOf[LoginRequest])
+		KryoRegisterer.registerAll(kryo)
 	}
 
 }
