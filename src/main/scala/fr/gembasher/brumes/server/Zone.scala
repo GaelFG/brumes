@@ -11,9 +11,14 @@ import fr.gembasher.brumes.Entity
 class Zone (val name :Symbol){
 	var entities :List[Entity] = List()
 
+	def register_entity (entity :Entity) {
+		entities = entity :: entities
+	}
 
 	def update {
-
+		for( entity :Entity <- entities) {
+			entity.update()
+		}
 	}
 
 	def is_free(location :Location, collision_size :Double) :Boolean = {
