@@ -34,13 +34,13 @@ object DataBase {
 		val zone_id :Symbol = 'test_zone
 		if (id == 3) {
 			val position_initiale = new Position(World.get_zone_by_id(zone_id), Location(0, 0),1)
-			character = new PlayerCharacter(id, "Gael", position_initiale, 1)
+			character = new PlayerCharacter("Gael", position_initiale, 1)
 		} else if (id == 4) {
 			val position_initiale = new Position(World.get_zone_by_id(zone_id), Location(2, 2),1)
-			character = new PlayerCharacter(id, "Flavio", position_initiale, 1)
+			character = new PlayerCharacter("Flavio", position_initiale, 1)
 		} else {
 			val position_initiale = new Position(World.get_zone_by_id(zone_id), Location(2, 2),1)
-			character = new PlayerCharacter(id, "RandomConnard", position_initiale, 1)
+			character = new PlayerCharacter("RandomConnard", position_initiale, 1)
 		}
 		return character
 	}

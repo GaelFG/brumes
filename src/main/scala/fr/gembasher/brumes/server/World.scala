@@ -6,7 +6,6 @@ import scala.collection.mutable.MutableList
 *
 */
 object World {
-
 	var zones :Map[Symbol,Zone] = Map() // mettre les zones
 	
 	def register_character( character :PlayerCharacter ) {
@@ -20,7 +19,6 @@ object World {
 	}
 
 	def get_zone_by_id( id_zone :Symbol ) :Zone = {
-		println(zones)
 		return zones('test_zone)
 	}
 
@@ -29,7 +27,6 @@ object World {
 			zone.update
 		}
 	}
-
 
 
 }

@@ -34,14 +34,18 @@ object BrumesListener extends Listener {
 							} else {
 								session.sendTCP(new RegistrationRequired())
 							}
+
+
 		} else if (obj.isInstanceOf[PlayerIntent] ) {
+
 				    		if (character != null) {
 					    			val player_intent :PlayerIntent = obj.asInstanceOf[PlayerIntent]
-				    			println("demande de mouvement a x : " + player_intent.destination_x + " Y : " + player_intent.destination_y);
 				    			character.aim_toward(Location(player_intent.destination_x, player_intent.destination_y))
 				    		} else {
 				    			session.sendTCP(new RegistrationRequired())
 					   		}
+
+
     	}
 
 	}
