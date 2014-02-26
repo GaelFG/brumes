@@ -22,10 +22,15 @@ object World {
 		return zones('test_zone)
 	}
 
-	def update(delta : Double) {
+	def update(delta :Double) {
 		for ( zone :Zone <- zones.values ) {
 			zone.update
 		}
+	}
+
+	def disconnect_character ( character :PlayerCharacter ) {
+		val zone = get_zone_by_id(character.get_zone_key())
+		zone.delete_entity(character)
 	}
 
 

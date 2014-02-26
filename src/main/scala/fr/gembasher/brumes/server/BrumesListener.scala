@@ -3,11 +3,14 @@ package fr.gembasher.brumes.server
 import com.esotericsoftware.kryonet.Listener
 import com.esotericsoftware.kryonet.Connection
 import fr.gembasher.brumes.PlayerCharacter
+import fr.gembasher.brumes.Entity
 
 import fr.gembasher.brumes.network.RegistrationRequired
 import fr.gembasher.brumes.network.LoginRequest
 import fr.gembasher.brumes.network.LoggedAs
 import fr.gembasher.brumes.network.PlayerIntent
+import fr.gembasher.brumes.network.EntityDescription
+import fr.gembasher.brumes.network.EntityDescriptionRequest
 
 /**
 *	Here are received players inputs
@@ -30,7 +33,7 @@ object BrumesListener extends Listener {
 								World.register_character(character)
 								println("connexion de " + character.name)
 								session.character = character
-								session.sendTCP(new LoggedAs(character.name))
+								session.sendTCP(new LoggedAs(character.name, character.id))
 							} else {
 								session.sendTCP(new RegistrationRequired())
 							}
@@ -45,8 +48,21 @@ object BrumesListener extends Listener {
 				    			session.sendTCP(new RegistrationRequired())
 					   		}
 
+		} else if (obj.isInstanceOf[EntityDescriptionRequest] ) {
 
-    	}
+				    		if (character != null) {
+					    		val request :EntityDescriptionRequest = obj.asInstanceOf[EntityDescriptionRequest]
+				    			val zone_key :Symbol = character.get_zone_key()
+				    			val zone :Zone = World.get_zone_by_id(zone_key)
+				    			val descripted_entity :Entity = zone.get_entity_by_id(request.id)
+				    			val response :EntityDescription = descripted_entity.generate_description();
+				    			session.sendTCP(response);
+				    		} else {
+				    			session.sendTCP(new RegistrationRequired())
+					   		}
+
+    	} 
+    	//else if (obj.isInstanceOf[Logout] ) { World.disconnect_character(character) }
 
 	}
 }

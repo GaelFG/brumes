@@ -17,6 +17,19 @@ class Zone (val name :Symbol){
 		entities = entity :: entities
 	}
 
+	def delete_entity(entity_to_remove :Entity) {
+		entities = entities.remove( entity => entity == entity_to_remove )
+	}
+
+	def get_entity_by_id(entity_id :Int) :Entity = {
+		for (entity :Entity <- entities) {
+			if (entity.id == entity_id ) {
+				return entity
+			}
+		}
+		return null
+	}
+
 	def update {
 		val world_state :WorldState = new WorldState()
 		var entities_states :List[EntityState] = List[EntityState]()

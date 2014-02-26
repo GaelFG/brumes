@@ -1,9 +1,10 @@
 package fr.gembasher.brumes
 
 import fr.gembasher.brumes.network.EntityState
+import fr.gembasher.brumes.network.EntityDescription
 
 /** Generic class for entities currently instancied in a Zone */
-abstract class Entity extends Moveable {
+abstract class Entity(var name :String, var model_name :String, var model_parameters :String) extends Moveable {
 	val id :Int = Entity.get_new_entity_id()
 
 	def generate_state() :EntityState ={
@@ -15,6 +16,11 @@ abstract class Entity extends Moveable {
 			)
 	}
 
+	def generate_description() :EntityDescription ={
+		new EntityDescription(id, name, model_name, model_parameters
+			)
+	}
+
 	def update() {
 		//update code
 		move()
@@ -23,7 +29,6 @@ abstract class Entity extends Moveable {
 }
 
 /** Companion object wich provide uniques id */
-
 object Entity {
 	var next_entity_id :Int = 1;
 
